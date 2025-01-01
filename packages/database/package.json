@@ -1,27 +1,26 @@
 {
-  "name": "@repo/database",
-  "version": "0.0.0",
+  "name": "database",
+  "version": "1.0.0",
+  "private": true,
   "main": "./index.ts",
   "types": "./index.ts",
   "scripts": {
-    "analyze": "prisma generate --no-hints",
-    "build": "prisma generate --no-hints",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "clean": "rm -rf .turbo node_modules",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:seed": "ts-node prisma/seed.ts",
+    "format": "prisma format",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "6.0.1",
-    "@prisma/extension-accelerate": "^1.2.1",
-    "@prisma/extension-pulse": "^1.2.0",
-    "@repo/env": "workspace:*",
-    "server-only": "^0.0.1",
-    "undici": "^7.1.0"
+    "@prisma/client": "^6.0.1"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "22.10.1",
-    "bufferutil": "^4.0.8",
-    "prisma": "6.0.1",
-    "typescript": "^5.7.2"
+    "@types/node": "^20.10.6",
+    "eslint": "^8.56.0",
+    "prisma": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }

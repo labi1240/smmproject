@@ -6,6 +6,7 @@ import { cn } from '@repo/design-system/lib/utils';
 import type { ReactNode } from 'react';
 import { Footer } from './components/footer';
 import { Header } from './components/header';
+import Providers from './providers';
 
 type RootLayoutProperties = {
   readonly children: ReactNode;
@@ -20,7 +21,8 @@ const RootLayout = ({ children }: RootLayoutProperties) => (
     <body>
       <DesignSystemProvider>
         <Header />
-        {children}
+        <Providers>{children}</Providers>
+
         <Footer />
       </DesignSystemProvider>
     </body>

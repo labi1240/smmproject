@@ -1,0 +1,179 @@
+{
+  "instagram": {
+    "followers": [
+      {
+        "service": 1810,
+        "name": "USA Premium Followers",
+        "description": "High-Quality USA Followers with 30 Days Refill",
+        "type": "Default",
+        "rate": "5.45",
+        "min": "50",
+        "max": "200000",
+        "features": {
+          "refill": true,
+          "refillDays": 30,
+          "startTime": "0-1 hour",
+          "speed": "50K/day",
+          "dripfeed": true,
+          "quality": "Premium USA"
+        },
+        "platform": "INSTAGRAM",
+        "serviceType": "FOLLOWERS",
+        "category": "Premium Services"
+      }
+    ],
+    "likes": [
+      {
+        "service": 1910,
+        "name": "USA Premium Likes",
+        "description": "High-Quality USA Likes with 30 Days Refill",
+        "type": "Default",
+        "rate": "0.45",
+        "min": "50",
+        "max": "100000",
+        "features": {
+          "refill": true,
+          "refillDays": 30,
+          "startTime": "0-1 hour",
+          "speed": "50K/day",
+          "dripfeed": true,
+          "quality": "Premium USA"
+        },
+        "platform": "INSTAGRAM",
+        "serviceType": "LIKES",
+        "category": "Premium Services"
+      }
+    ],
+    "packages": [
+      {
+        "service": 8751,
+        "name": "AI Growth - Standard",
+        "description": "Monthly AI-powered growth package with real, targeted followers",
+        "type": "Package",
+        "rate": "41.25",
+        "min": "1",
+        "max": "1",
+        "features": {
+          "followersPerMonth": 1000,
+          "duration": "Monthly",
+          "type": "AI Growth",
+          "includes": [
+            "Real Followers",
+            "Smart Targeting",
+            "Monthly Analytics",
+            "24/7 Support"
+          ]
+        },
+        "platform": "INSTAGRAM",
+        "serviceType": "GROWTH_PACKAGE",
+        "category": "Growth Packages"
+      }
+    ],
+    "views": [
+      {
+        "service": 2108,
+        "name": "Story Views",
+        "description": "Fast Story Views with High Retention",
+        "type": "Default",
+        "rate": "0.25",
+        "min": "100",
+        "max": "10000",
+        "features": {
+          "refill": false,
+          "startTime": "0-30 min",
+          "speed": "10K/day",
+          "retention": "100%"
+        },
+        "platform": "INSTAGRAM",
+        "serviceType": "VIEWS",
+        "category": "Story Services"
+      }
+    ]
+  },
+  "tiktok": {
+    "followers": [
+      {
+        "service": 2934,
+        "name": "TikTok Premium Followers",
+        "description": "High-Quality TikTok Followers",
+        "type": "Default",
+        "rate": "2.11",
+        "min": "50",
+        "max": "30000",
+        "features": {
+          "refill": false,
+          "startTime": "0-1 hour",
+          "speed": "10K/day",
+          "quality": "Premium Mix"
+        },
+        "platform": "TIKTOK",
+        "serviceType": "FOLLOWERS",
+        "category": "Premium Services"
+      }
+    ],
+    "likes": [
+      {
+        "service": 2929,
+        "name": "TikTok Likes",
+        "description": "Fast TikTok Likes with High Retention",
+        "type": "Default",
+        "rate": "2.11",
+        "min": "10",
+        "max": "30000",
+        "features": {
+          "refill": false,
+          "startTime": "0-1 hour",
+          "speed": "10K/day",
+          "quality": "High Quality"
+        },
+        "platform": "TIKTOK",
+        "serviceType": "LIKES",
+        "category": "Engagement Services"
+      }
+    ]
+  },
+  "youtube": {
+    "subscribers": [
+      {
+        "service": 5025,
+        "name": "YouTube Premium Subscribers",
+        "description": "High-Quality YouTube Subscribers with 30 Days Refill",
+        "type": "Default",
+        "rate": "2.50",
+        "min": "50",
+        "max": "50000",
+        "features": {
+          "refill": true,
+          "refillDays": 30,
+          "startTime": "0-3 hours",
+          "speed": "5K/day",
+          "quality": "Premium"
+        },
+        "platform": "YOUTUBE",
+        "serviceType": "FOLLOWERS",
+        "category": "Premium Services"
+      }
+    ],
+    "views": [
+      {
+        "service": 5026,
+        "name": "YouTube Views",
+        "description": "High Retention YouTube Views",
+        "type": "Default",
+        "rate": "3.75",
+        "min": "50",
+        "max": "50000",
+        "features": {
+          "refill": true,
+          "refillDays": 30,
+          "startTime": "0-3 hours",
+          "speed": "50K/day",
+          "retention": "80%+"
+        },
+        "platform": "YOUTUBE",
+        "serviceType": "VIEWS",
+        "category": "Premium Services"
+      }
+    ]
+  }
+}

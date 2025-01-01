@@ -57,6 +57,7 @@ const server: Parameters<typeof createEnv>[0]['server'] = {
   QSTASH_CURRENT_SIGNING_KEY: z.string().min(1).optional(),
   QSTASH_NEXT_SIGNING_KEY: z.string().min(1).optional(),
   QSTASH_TOKEN: z.string().min(1).optional(),
+  JAP_API_KEY: z.string().min(1).optional(),
 };
 
 //
@@ -129,6 +130,7 @@ export const env = createEnv({
     QSTASH_CURRENT_SIGNING_KEY: process.env.QSTASH_CURRENT_SIGNING_KEY,
     QSTASH_NEXT_SIGNING_KEY: process.env.QSTASH_NEXT_SIGNING_KEY,
     QSTASH_TOKEN: process.env.QSTASH_TOKEN,
+    JAP_API_KEY: process.env.JAP_API_KEY,
 
     // ───── Client ─────
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:

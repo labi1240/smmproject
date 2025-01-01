@@ -1,0 +1,45 @@
+{
+  "instagram": [
+    {
+      "service": 1,
+      "name": "Instagram Followers",
+      "type": "Default",
+      "category": "Followers",
+      "rate": "0.90",
+      "min": "50",
+      "max": "10000",
+      "refill": true,
+      "cancel": true,
+      "platform": "INSTAGRAM",
+      "serviceType": "FOLLOWERS"
+    },
+    {
+      "service": 2,
+      "name": "Instagram Likes",
+      "type": "Default",
+      "category": "Engagement",
+      "rate": "0.50",
+      "min": "10",
+      "max": "5000",
+      "refill": true,
+      "cancel": true,
+      "platform": "INSTAGRAM",
+      "serviceType": "LIKES"
+    }
+  ],
+  "tiktok": [
+    {
+      "service": 3,
+      "name": "TikTok Followers",
+      "type": "Default",
+      "category": "Followers",
+      "rate": "1.20",
+      "min": "100",
+      "max": "20000",
+      "refill": true,
+      "cancel": true,
+      "platform": "TIKTOK",
+      "serviceType": "FOLLOWERS"
+    }
+  ]
+}

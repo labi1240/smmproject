@@ -1,0 +1,133 @@
+[
+  {
+    "name": "CoinMarketCap Watchlist",
+    "description": "Standard OTHER other service with 5K/Day speed",
+    "features": [
+      "Max: 500K",
+      "Start Time: 0 - 24 Hours",
+      "Refill: Non Drop",
+      "Speed: 5K/Day"
+    ],
+    "basePrice": 18.75,
+    "type": "OTHER",
+    "platform": "OTHER",
+    "category": "ENGAGEMENT_SERVICES",
+    "deliverySpeed": "GRADUAL",
+    "targetInputType": "USERNAME",
+    "thirdPartyServiceId": 7599,
+    "createdAt": "2025-01-01T20:02:47.831175",
+    "updatedAt": "2025-01-01T20:02:47.831188",
+    "servicePlans": [
+      {
+        "count": 100,
+        "price": 1.875,
+        "captchaRequired": false,
+        "deliverySpeed": "GRADUAL",
+        "disabled": false,
+        "discount": false,
+        "guaranteeDays": 0,
+        "guaranteePrice": null,
+        "duration": 1440,
+        "startTime": "1440 minutes",
+        "retention": "Standard"
+      }
+    ],
+    "supportsCancel": false,
+    "supportsRefill": false,
+    "supportsDripFeed": false,
+    "isActive": true,
+    "country": {
+      "connect": {
+        "iso2": "WW"
+      }
+    }
+  },
+  {
+    "name": "CoinMarketCap Watchlist Followers",
+    "description": "Standard OTHER followers service with 5K/Day speed",
+    "features": [
+      "Max: 250K",
+      "Start Time: 0 - 24 Hours",
+      "Refill: Non Drop",
+      "Speed: 5K/Day"
+    ],
+    "basePrice": 27.5,
+    "type": "FOLLOWERS",
+    "platform": "OTHER",
+    "category": "ENGAGEMENT_SERVICES",
+    "deliverySpeed": "GRADUAL",
+    "targetInputType": "USERNAME",
+    "thirdPartyServiceId": 7600,
+    "createdAt": "2025-01-01T20:02:47.831208",
+    "updatedAt": "2025-01-01T20:02:47.831211",
+    "servicePlans": [
+      {
+        "count": 100,
+        "price": 2.75,
+        "captchaRequired": false,
+        "deliverySpeed": "GRADUAL",
+        "disabled": false,
+        "discount": false,
+        "guaranteeDays": 0,
+        "guaranteePrice": null,
+        "duration": 1440,
+        "startTime": "1440 minutes",
+        "retention": "Standard"
+      }
+    ],
+    "supportsCancel": false,
+    "supportsRefill": false,
+    "supportsDripFeed": false,
+    "isActive": true,
+    "country": {
+      "connect": {
+        "iso2": "WW"
+      }
+    }
+  },
+  {
+    "name": "CoinMarketCap Post Likes",
+    "description": "Standard OTHER likes service with Up to 50K/D speed",
+    "features": [
+      "Drip Feed Available",
+      "Can Cancel",
+      "Max: 50K",
+      "Start Time: 0 - 1 Hr",
+      "Refill: No",
+      "Speed: Up to 50K/D"
+    ],
+    "basePrice": 25.0,
+    "type": "LIKES",
+    "platform": "OTHER",
+    "category": "ENGAGEMENT_SERVICES",
+    "deliverySpeed": "INSTANT",
+    "targetInputType": "USERNAME",
+    "thirdPartyServiceId": 9414,
+    "createdAt": "2025-01-01T20:02:47.831225",
+    "updatedAt": "2025-01-01T20:02:47.831227",
+    "servicePlans": [
+      {
+        "count": 50,
+        "price": 1.25,
+        "captchaRequired": false,
+        "deliverySpeed": "INSTANT",
+        "disabled": false,
+        "discount": false,
+        "guaranteeDays": 0,
+        "guaranteePrice": null,
+        "duration": 60,
+        "startTime": "60 minutes",
+        "retention": "Standard"
+      }
+    ],
+    "supportsCancel": true,
+    "supportsRefill": false,
+    "supportsDripFeed": true,
+    "isActive": true,
+    "country": {
+      "connect": {
+        "iso2": "WW"
+      }
+    }
+  }
+]

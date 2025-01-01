@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
@@ -12,10 +9,341 @@ datasource db {
   relationMode = "prisma"
 }
 
-// This is a stub model.
-// Delete it and add your own Prisma models.
-model Page {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+enum Role {
+  USER
+  ADMIN
+  RESELLER
+}
+
+enum Platform {
+  INSTAGRAM
+  FACEBOOK
+  YOUTUBE
+  TWITTER
+  SPOTIFY
+  TIKTOK
+  LINKEDIN
+  GOOGLE
+  TELEGRAM
+  DISCORD
+  SNAPCHAT
+  TWITCH
+  WEBSITE_TRAFFIC
+  REVIEWS
+  OTHER
+}
+
+enum ServiceType {
+  LIKES
+  FOLLOWERS
+  VIEWS
+  COMMENTS
+  SUBSCRIBERS
+  AUTO_LIKES
+  AUTO_LIKES_SUBS
+  SHARES
+  GROWTH_PACKAGE
+  LIVE_STREAM_VIEWS
+  LIVE_STREAM_LIKES
+  LIVE_STREAM_SHARES
+  LIVE_STREAM_COMMENTS
+  BATTLE_POINTS
+  SAVES
+  DOWNLOADS
+  PRE_PREMIERE_VIEWS
+  RAV_MTS_VIEWS
+  SHORTS_VIEWS
+  SHORTS_LIKES
+  MONETIZED_VIEWS
+  LIVE_VIEWS
+  PK_BATTLE_POINTS
+  OTHER
+}
+
+enum ServiceCategory {
+  PREMIUM_SERVICES
+  GROWTH_PACKAGES
+  STORY_SERVICES
+  ENGAGEMENT_SERVICES
+  LIVE_STREAM_SERVICES
+  AUTO_ENGAGEMENT
+  MONETIZATION_SERVICES
+  SHORTS_SERVICES
+  LIVE_SERVICES
+  AUTO_SERVICES
+}
+
+enum DeliverySpeed {
+  INSTANT
+  GRADUAL
+  PREMIUM_INSTANT
+  PREMIUM_GRADUAL
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum TransactionType {
+  TOP_UP
+  ORDER_PAYMENT
+  REFUND
+  OTHER
+}
+
+enum TargetInputType {
+  USERNAME
+  LINK
+}
+
+enum Retention {
+  Standard
+  Monthly
+  The1Min  @map("~1 Min")
+}
+
+enum StartTime {
+  The0Minutes    @map("0 minutes")
+  The5Minutes    @map("5 minutes")
+  The10Minutes   @map("10 minutes")
+  The15Minutes   @map("15 minutes")
+  The30Minutes   @map("30 minutes")
+  The60Minutes   @map("60 minutes")
+  The1Minutes    @map("1 minutes")
+  The120Minutes  @map("120 minutes")
+  The1440Minutes @map("1440 minutes")
+  The180Minutes  @map("180 minutes")
+  The240Minutes  @map("240 minutes")
+  The300Minutes  @map("300 minutes")
+  The360Minutes  @map("360 minutes")
+  The480Minutes  @map("480 minutes")
+  The540Minutes  @map("540 minutes")
+  The600Minutes  @map("600 minutes")
+  The720Minutes  @map("720 minutes")
+  The1080Minutes @map("1080 minutes")
+  The2160Minutes @map("2160 minutes")
+  The2880Minutes @map("2880 minutes")
+  The4320Minutes @map("4320 minutes")
+  The4440Minutes @map("4440 minutes")
+  The5760Minutes @map("5760 minutes")
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  name           String?
+  image          String?
+  role           Role          @default(USER)
+  balance        Float         @default(0)
+  wallet         Wallet?       @relation("UserWallet")
+  walletId       String?       @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  deletedAt      DateTime?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+
+  payments Payment[]
+  orders   Order[]
+
+  @@index([organizationId])
+  @@index([email])
+  @@index([deletedAt])
+}
+
+model Wallet {
+  id           String              @id @default(cuid())
+  user         User                @relation("UserWallet", fields: [userId], references: [id])
+  userId       String              @unique
+  balance      Float               @default(0)
+  transactions WalletTransaction[]
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+model Country {
+  id         String    @id @default(cuid())
+  name       String
+  iso2       String    @unique
+  phone_code String
+  flag       String
+  services   Service[] // Services targeting this country
+}
+
+model Service {
+  id                  String          @id @default(cuid())
+  name                String
+  description         String
+  features            String[]
+  basePrice           Float
+  type                ServiceType
+  platform            Platform
+  category            ServiceCategory
+  deliverySpeed       DeliverySpeed
+  targetInputType     TargetInputType @default(USERNAME)
+  supportsCancel      Boolean         @default(false)
+  supportsRefill      Boolean         @default(false)
+  supportsDripFeed    Boolean         @default(false)
+  isActive            Boolean         @default(true)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  deletedAt           DateTime?
+  orders              Order[]
+  country             Country?        @relation(fields: [countryId], references: [id])
+  countryId           String?
+  servicePlans        ServicePlan[]
+  serviceExtras       ServiceExtra[]
+  thirdPartyServiceId Int             @unique
+
+  @@index([countryId])
+  @@index([platform, type])
+  @@index([deletedAt])
+}
+
+model ServicePlan {
+  id              String        @id @default(cuid())
+  service         Service       @relation(fields: [serviceId], references: [id])
+  serviceId       String
+  count           Int
+  price           Float
+  captchaRequired Boolean
+  deliverySpeed   DeliverySpeed
+  disabled        Boolean       @default(false)
+  discount        Boolean       @default(false)
+  guaranteeDays   Int?
+  guaranteePrice  Float?
+  duration        Int? // in minutes, if applicable
+  startTime       StartTime?
+  retention       Retention?
+
+  @@unique([serviceId, count])
+  @@index([serviceId])
+}
+
+model Order {
+  id                String             @id @default(cuid())
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String
+  service           Service            @relation(fields: [serviceId], references: [id])
+  serviceId         String
+  quantity          Int
+  target            String // Generic target field (can be username or link)
+  targetType        TargetInputType // Type of the target
+  orderTargets      OrderTarget[] // For multiple targets if needed
+  status            OrderStatus        @default(PENDING)
+  thirdPartyOrderId Int? // Order ID from justanotherpanel API
+  charge            Float? // Amount charged via Stripe
+  currency          String? // Currency of the charge
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  deletedAt         DateTime?
+  payments          Payment[]          @relation("OrderPayments")
+  serviceExtrasUsed ServiceExtraUsed[]
+
+  @@index([serviceId])
+  @@index([userId])
+  @@index([status])
+  @@index([deletedAt])
+  @@index([createdAt])
+}
+
+model ServiceExtraUsed {
+  id             String       @id @default(cuid())
+  order          Order        @relation(fields: [orderId], references: [id])
+  orderId        String
+  serviceExtra   ServiceExtra @relation(fields: [serviceExtraId], references: [id])
+  serviceExtraId String
+  quantity       Int
+  price          Float
+
+  @@index([orderId, serviceExtraId])
+}
+
+model ServiceExtra {
+  id               String             @id @default(cuid())
+  service          Service            @relation(fields: [serviceId], references: [id])
+  serviceId        String
+  name             String
+  count            Int
+  price            Float
+  disabled         Boolean            @default(false)
+  ServiceExtraUsed ServiceExtraUsed[]
+
+  @@unique([serviceId, name])
+  @@index([serviceId])
+}
+
+model Payment {
+  id                  String             @id @default(cuid())
+  user                User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String
+  order               Order?             @relation("OrderPayments", fields: [orderId], references: [id], onDelete: SetNull)
+  orderId             String?
+  amount              Float
+  currency            String
+  status              PaymentStatus
+  transactionId       String? // Stripe transaction ID
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  deletedAt           DateTime?
+  walletTransaction   WalletTransaction? @relation("PaymentWalletTransaction", fields: [walletTransactionId], references: [id])
+  walletTransactionId String?            @unique
+
+  @@index([userId])
+  @@index([orderId])
+  @@index([status])
+  @@index([transactionId])
+  @@index([deletedAt])
+  @@index([createdAt])
+}
+
+model WalletTransaction {
+  id          String          @id @default(cuid())
+  wallet      Wallet          @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  walletId    String
+  type        TransactionType
+  amount      Float
+  currency    String
+  description String?
+  payment     Payment?        @relation("PaymentWalletTransaction")
+  paymentId   String?         @unique
+  createdAt   DateTime        @default(now())
+  deletedAt   DateTime?
+
+  @@index([walletId])
+  @@index([paymentId])
+  @@index([type])
+  @@index([deletedAt])
+  @@index([createdAt])
+}
+
+model OrderTarget {
+  id         String          @id @default(cuid())
+  order      Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId    String
+  target     String
+  targetType TargetInputType
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@index([orderId])
 }
